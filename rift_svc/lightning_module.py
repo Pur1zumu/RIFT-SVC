@@ -57,9 +57,8 @@ class RIFTSVCLightningModule(LightningModule):
             lens=frame_lens,
         )
 
-        for k, v in loss.items():
-            self.log(f'train/{k}', v, prog_bar=True, logger=True)
-        return loss['loss']
+        self.log('train/loss', loss, prog_bar=True, logger=True)
+        return loss
     
     def on_validation_start(self):
         self.optimizer.eval()
