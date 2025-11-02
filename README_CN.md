@@ -18,31 +18,20 @@ git clone https://github.com/Pur1zumu/RIFT-SVC.git
 cd RIFT-SVC
 ```
 
-#### 2. 创建新的conda环境
+#### 2. 安装环境
+* 需要安装uv：https://docs.astral.sh/uv/getting-started/installation/
 ```bash
-conda create -n rift-svc python=3.11
-conda activate rift-svc
-```
-
-#### 3. 安装支持您CUDA版本的torch。更多详情请参见[PyTorch](https://pytorch.org/get-started/locally/)。
-例如，对于cuda 12.1，使用：
-```bash
-pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu121
-```
-
-#### 4. 安装其他依赖
-```bash
-pip install -r requirements.txt
-```
+uv sync
+``` 
 
 ## 模型和数据准备
 
-#### 5. 下载特征提取和声码器的预训练模型。
+#### 3. 下载特征提取和声码器的预训练模型。
 ```bash
 python pretrained/download.py   
 ```
 
-#### 6. 下载用于微调的预训练权重。
+#### 4. 下载用于微调的预训练权重。
 
 | 模型 | 命令 |
 | --- | --- |
@@ -51,7 +40,7 @@ python pretrained/download.py
 | pretrain-v3_dit-1024-16 | wget https://huggingface.co/Pur1zumu/RIFT-SVC-pretrained/resolve/main/pretrain-v3_dit-1024-16.ckpt -O pretrained/pretrain-v3_dit-1024-16.ckpt |
 
 
-#### 7. 准备数据并提取特征。
+#### 5. 准备数据并提取特征。
 您应该这样组织您的数据：
 ```
 data/
@@ -98,7 +87,7 @@ python scripts/prepare_cvec.py --data-dir $DATA_DIR --num-workers $NUM_WORKERS
 
 ## 训练
 
-#### 8. 开始微调
+#### 6. 开始微调
 
 我们同时实现了Tensorboard和Wandb用于日志记录。
 
@@ -180,7 +169,7 @@ training.drop_spk_prob=0.2
 
 ## 推理
 
-#### 9. 推理
+#### 7. 推理
 基本推理命令：
 ```bash
 python infer.py \
@@ -241,7 +230,7 @@ python infer.py \
 
 ##### GUI推理
 
-要启动GUI网页界面推理，运行：
+要启动GUI网页推理，运行：
 
 ```bash
 python gui_infer.py

@@ -20,31 +20,20 @@ git clone https://github.com/Pur1zumu/RIFT-SVC.git
 cd RIFT-SVC
 ```
 
-#### 2. Create a new conda environment
+#### 2. Install environment
+* uv is required: https://docs.astral.sh/uv/getting-started/installation/
 ```bash
-conda create -n rift-svc python=3.11
-conda activate rift-svc
-```
-
-#### 3. Install torch that supports your cuda version. See [PyTorch](https://pytorch.org/get-started/locally/) for more details.
-E.g., for cuda 12.1, use:
-```bash
-pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu121
-```
-
-#### 4. Install other dependencies
-```bash
-pip install -r requirements.txt
-```
+uv sync
+``` 
 
 ## Models and Data Preparation
 
-#### 5. Download pretrained models for feature extraction and vocoder.
+#### 3. Download pretrained models for feature extraction and vocoder.
 ```bash
 python pretrained/download.py   
 ```
 
-#### 6. Download pretrained weights for fine-tuning.
+#### 4. Download pretrained weights for fine-tuning.
 
 | Model | Command |
 | --- | --- |
@@ -53,7 +42,7 @@ python pretrained/download.py
 | pretrain-v3_dit-1024-16 | wget https://huggingface.co/Pur1zumu/RIFT-SVC-pretrained/resolve/main/pretrain-v3_dit-1024-16.ckpt -O pretrained/pretrain-v3_dit-1024-16.ckpt |
 
 
-#### 7. Prepare data and extract features.
+#### 5. Prepare data and extract features.
 You should structure your data like this:
 ```
 data/
@@ -100,7 +89,7 @@ where `$DATA_DIR` is the path to your data directory (e.g., `data/finetune`) and
 
 ## Training
 
-#### 8. Start Finetuning
+#### 6. Start Finetuning
 
 We implement both Tensorboard and Wandb for logging.
 
@@ -182,7 +171,7 @@ Then, you can resume training from a checkpoint later by adding the following ar
 
 ## Inference
 
-#### 9. Inference
+#### 7. Inference
 Basic inference command:
 ```bash
 python infer.py \
