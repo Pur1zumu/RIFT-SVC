@@ -4,6 +4,8 @@
 
 **RIFT-SVC**是一种基于Rectified Flow Transformer的歌声转换模型实现。我们测试了几种相对于基础Diffusion Transformer的架构和训练改进。
 
+**在线测试（[七海Nana7mi](https://space.bilibili.com/434334701)）：[https://huggingface.co/spaces/Pur1zumu/RIFT-SVC-Nanami](https://huggingface.co/spaces/Pur1zumu/RIFT-SVC-Nanami)**
+
 ## 新闻
 - **2025-03-06: V3.0已发布。** 我们移除了V2中的whisper编码器，并添加了多个具有不同条件的无分类器引导。音色和发音都得到了改善。
 - 2025-01-14: V2.0已发布。cfg-strength现在可以用来控制音色和发音之间的平衡。
