@@ -24,6 +24,7 @@ cd RIFT-SVC
 * 需要安装uv：https://docs.astral.sh/uv/getting-started/installation/
 ```bash
 uv sync
+source .venv/bin/activate
 ``` 
 
 ## 模型和数据准备
@@ -194,9 +195,9 @@ python infer.py \
 --key-shift 0 \
 --infer-steps 32 \
 --batch-size 4 \
---ds-cfg-strength 0.1 \
---spk-cfg-strength 0.2 \
---skip-cfg-strength 0.1 \
+--ds-cfg-strength 0.2 \
+--spk-cfg-strength 0.8 \
+--skip-cfg-strength 0.0 \
 --cfg-skip-layers 6 \
 --cfg-rescale 0.7 \
 --cvec-downsample-rate 2
@@ -210,9 +211,9 @@ python infer.py \
 - `--key-shift`：以半音为单位的音高偏移（默认：0）。
 - `--infer-steps`：推理步骤的数量（默认：32）。更高的值可能会产生更好的质量，但需要更长的时间。
 - `--batch-size`: 并行推理的批处理大小（默认：1）。更高的值可以通过同时处理多个音频片段来加速推理，但需要更多的显存。
-- `--ds-cfg-strength`：内容向量引导强度（默认：0.0）。更高的值可以改善内容保留和咬字清晰度。过高会用力过猛。我们建议初始试用值为0.1。
-- `--spk-cfg-strength`：说话者引导强度（默认：0.0）。更高的值可以增强说话人相似度。过高可能导致音色失真。我们建议初始试用值为0.2-1。
-- `--skip-cfg-strength`：跳层引导强度（实验性功能，默认：0.0）。增强指定层的特征渲染。效果取决于目标层的功能。我们建议初始试用值为0.1。
+- `--ds-cfg-strength`：内容向量引导强度（默认：0.2）。更高的值可以改善内容保留和咬字清晰度。过高会用力过猛。我们建议初始试用值为0.2。
+- `--spk-cfg-strength`：说话者引导强度（默认：0.8）。更高的值可以增强说话人相似度。过高可能导致音色失真。我们建议初始试用值为0.2-1。
+- `--skip-cfg-strength`：跳层引导强度（实验性功能，默认：0.0）。增强指定层的特征渲染。效果取决于目标层的功能.
 - `--cfg-skip-layers`：要跳过的目标层（实验性功能，默认：无）。我们建议初始试用值为（层数）/ 2，即12层模型为6。由于不同层具有不同功能，可以调整此值以找到最佳平衡。举例说明，如果某一层处理韵律相关特征，则跳过该层将使输出具有更多韵律特征。
 - `--cfg-rescale`：无分类器引导重缩放因子（默认：0.7）。用于防止引导过饱和。
 - `--cvec-downsample-rate`：用于反向引导的内容向量下采样率（默认：2）。
